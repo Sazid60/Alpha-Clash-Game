@@ -12,7 +12,6 @@
 
 
 </head>
-
 <body class="font-poppins">
     <main class="bg-[#010313] min-h-screen bg-[url(images/background.png)] bg-no-repeat bg-center">
 
@@ -41,7 +40,7 @@
 
                 </div>
                 <!-- Keyboard start-->
-                <div class = "text-white">
+                <div  class = "text-white">
                     <div class="flex justify-center gap-1 my-1 w-full">
                         <kbd id= "q" class="kbd">q</kbd>
                         <kbd id= "w" class="kbd">w</kbd>
@@ -83,12 +82,12 @@
                     <button class="btn rounded-full bg-purple-300 text-white px-4">
                         Like
                         <img src="images/Group 23.svg" alt="">
-                        <span>1</span>
+                        <span id="current-life">5</span>
                     </button>
 
                     <button class="btn rounded-full bg-purple-700 text-white px-4">Score
                         <img src="images/monetization_on.svg" alt="">
-                        <span>1</span>
+                        <span id="current-Score">0</span>
                     </button>
                 </div>
 
@@ -98,13 +97,14 @@
         <!-- Playground End-->
 
         <!-- Score -->
-        <section class="score flex justify-center items-center min-h-screen hidden">
+        <section id = "final-score" class="flex justify-center items-center min-h-screen hidden">
             <div class="text-white text-center space-y-6 bg-[#FFFFFF8F] rounded-xl p-4">
+                <h4 class="text-3xl">Game Over !</h4>
                 <h1 class="text-8xl">
                     <span class=" font-extrabold">Score:</span>
-                    <span>14</span>
+                    <span id="last-score" >0</span>
                 </h1>
-                <button class="btn bg-white text-black">Play Again</button>
+                <button onclick="play()" class="btn bg-white text-black">Play Again</button>
                 <p>Practice will make you Pro</p>
             </div>
 
