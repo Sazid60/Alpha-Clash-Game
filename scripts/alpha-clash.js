@@ -10,6 +10,8 @@
 //     PlaygroundSection .classList.remove('hidden')
 // }
 
+const audio = new Audio();
+let isGamePlayOn = false; 
 function play() {
     //Hie verything except Playground
     hideElementById('home-screen');
@@ -21,6 +23,7 @@ function play() {
     //resent score & life
     setElementValueById('current-life', 5)
     setElementValueById('current-Score', 0)
+    isGamePlayOn = true;
     continueGame();
 
 }
@@ -40,12 +43,16 @@ function continueGame() {
 }
 
 //pura document ar keyup dilam
+
 document.addEventListener('keyup', handleKeyboardButtonPress);
 //FUNCTION CALL ER PORE JODI () DEI TAHLE FUNCTION KHALI AKBAR CALL HOBE NA DILE Joto bar press totobar dekhabe
 
 
 function handleKeyboardButtonPress(event) {
     // console.log('button Pressed')
+
+    if(isGamePlayOn === false) return;
+
     const playerPressed = event.key;
     // console.log('Player Pressed :', playerPressed)
     //event.target.value use kori nai because eta kuno input field e na
@@ -65,6 +72,9 @@ function handleKeyboardButtonPress(event) {
     //check matched or not
     if (playerPressed === expectedAlphabet) {
         console.log('You Have Got a pont');
+
+        audio.src = "../audio/click_click.mp3";
+        audio.play();
         // ---------------------------------------------------------------
         // //Update Score:
         // //1. get the current score
@@ -81,6 +91,7 @@ function handleKeyboardButtonPress(event) {
         const currentScore = getElementValueById('current-Score');
 
         const newScore = currentScore + 1;
+
         // console.log(newScore)
 
         //Setting New Score
@@ -93,6 +104,10 @@ function handleKeyboardButtonPress(event) {
     }
     else {
         console.log('You Lost a Life');
+
+        audio.src = "../audio/Bruh .mp3"
+        audio.play();
+        
         //------------------------------------------------------------
         //         //Update Life:
         // //1. get the current life
@@ -110,6 +125,9 @@ function handleKeyboardButtonPress(event) {
 
         const currentLife = getElementValueById('current-life');
         const newLife = currentLife - 1;
+        const newScorePercentage = (newLife / 5) * 100;
+        const artBoard = document.getElementById('art-board');
+        artBoard.style.background = `linear-gradient(#FFFFFFB3 ${newScorePercentage}%,red)`
         setElementValueById('current-life', newLife)
 
         if(newLife === 0){
@@ -119,6 +137,7 @@ function handleKeyboardButtonPress(event) {
 }
 
 function gameOver(){
+    
     hideElementById('play-ground');
     showElementById('final-score');
 
@@ -127,9 +146,16 @@ function gameOver(){
     const lastScore = getElementValueById('current-Score');
     setElementValueById('last-score', lastScore)
 
+    const artBoard = document.getElementById('art-board');
+    artBoard.style.background = `linear-gradient(#FFFFFFB3 100%,red)`
+
     //clear the last selected alphabet highlight
     const currentAlphabet = getElementTextById('current-alphabet');
     removeBackgroundById(currentAlphabet)
+
+    audio.src = "../audio/game_over.mp3"
+    audio.play();
+    isGamePlayOn = false;
 } 
 
 
