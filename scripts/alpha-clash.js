@@ -73,7 +73,7 @@ function handleKeyboardButtonPress(event) {
     if (playerPressed === expectedAlphabet) {
         console.log('You Have Got a pont');
 
-        audio.src = "../audio/click_click.mp3";
+        audio.src = "./audio/click_click.mp3";
         audio.play();
         // ---------------------------------------------------------------
         // //Update Score:
@@ -105,7 +105,7 @@ function handleKeyboardButtonPress(event) {
     else {
         console.log('You Lost a Life');
 
-        audio.src = "../audio/Bruh .mp3"
+        audio.src = "./audio/Bruh .mp3"
         audio.play();
         
         //------------------------------------------------------------
@@ -153,7 +153,7 @@ function gameOver(){
     const currentAlphabet = getElementTextById('current-alphabet');
     removeBackgroundById(currentAlphabet)
 
-    audio.src = "../audio/game_over.mp3"
+    audio.src = "./audio/game_over.mp3"
     audio.play();
     isGamePlayOn = false;
 } 
